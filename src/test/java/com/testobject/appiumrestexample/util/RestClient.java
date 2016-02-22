@@ -1,4 +1,4 @@
-package com.testobject.appiumrestexample;
+package com.testobject.appiumrestexample.util;
 
 import com.google.common.base.Optional;
 import com.sun.jersey.api.client.Client;

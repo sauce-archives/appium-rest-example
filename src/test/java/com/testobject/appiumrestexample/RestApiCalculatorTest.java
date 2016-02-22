@@ -1,58 +1,43 @@
 package com.testobject.appiumrestexample;
 
+import com.testobject.appiumrestexample.util.Parallelized;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testobject.appium.common.data.SuiteReport;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Set;
 
+@RunWith(Parallelized.class)
 public class RestApiCalculatorTest {
 
     private AppiumDriver driver;
-    private TestObject testObject;
+    private String device;
 
     public static final String TESTOBJECT_API_KEY = "7CDE94EFFE3E4EF4A773DB2728688C53";
+
+    protected RestApiCalculatorTest(String device) {
+        this.device = device;
+    }
 
     /* This is the setup that will be run before the test. */
     @Before
     public void setUp() throws Exception {
 
-        testObject = new TestObject("https://app.testobject.com:443/api/rest/devices/v1", TESTOBJECT_API_KEY);
-
-        ArrayList<String> availableDevices = testObject.getAvailableAndroidDevices();
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
+
         capabilities.setCapability("testobject_api_key", TESTOBJECT_API_KEY);
         capabilities.setCapability("testobject_app_id", "1");
+        capabilities.setCapability("testobject_device", device);
 
-        int count = 0;
-
-        // Run on available devices sequentially
-        for (String device : availableDevices) {
-
-            if (count < 10) {
-
-                capabilities.setCapability("testobject_device", device);
-                driver = new AndroidDriver(new URL("https://app.testobject.com:443/api/appium/wd/hub"), capabilities);
-                count++;
-
-            }
-
-        }
+        driver = new AndroidDriver(new URL("https://app.testobject.com:443/api/appium/wd/hub"), capabilities);
 
     }
 
@@ -62,7 +47,7 @@ public class RestApiCalculatorTest {
     }
 
     @Test
-    public void watcherTest() {
+    public void twoPlusTwoTest() {
 
         /* Get the elements. */
         MobileElement buttonTwo = (MobileElement)(driver.findElement(By.id("net.ludeke.calculator:id/digit2")));

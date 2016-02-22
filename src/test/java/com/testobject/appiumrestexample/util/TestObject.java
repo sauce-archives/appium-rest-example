@@ -1,9 +1,6 @@
-package com.testobject.appiumrestexample;
+package com.testobject.appiumrestexample.util;
 
 import com.sun.jersey.api.client.GenericType;
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.openqa.selenium.remote.SessionId;
 import org.testobject.appium.common.data.SuiteReport;
 import org.testobject.appium.common.data.TestReport;
