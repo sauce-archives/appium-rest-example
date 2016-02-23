@@ -19,11 +19,9 @@ public abstract class AbstractTest {
     private final AppiumDriverBuilder driverBuilder;
     private AppiumDriver driver;
 
-    protected Calculator app;
-
     public AbstractTest() {
         this.device = "Motorola_Moto_E_2nd_gen_real";
-        this.driverBuilder = AppiumDriverBuilder.forAndroid();
+        this.driverBuilder = AppiumDriverBuilder.forIOS();
     }
 
     public AbstractTest(String device, AppiumDriverBuilder driverBuilder) {
@@ -43,8 +41,6 @@ public abstract class AbstractTest {
         System.out.println("View test live: " + driver.getCapabilities().getCapability("testobject_test_live_view_url"));
 
         resultWatcher.setAppiumDriver(driver);
-
-        app = new Calculator(device, driver);
 
     }
 

@@ -5,7 +5,6 @@ import com.testobject.appiumrestexample.util.TestObject;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class RestApiCalculatorTestParallel extends RestApiCalculatorTest {
 
     @Parameterized.Parameters
     public static List<Object[]> data() {
-        ArrayList<String> devices = testObject.getAvailableAndroidDevices();
+        List<String> devices = testObject.getAvailableAndroidDevices();
         Object[][] parameters = new Object[devices.size()][1];
         for (int i = 0; i <devices.size(); i++) {
             parameters[i][0] = devices.get(i);

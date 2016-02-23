@@ -3,6 +3,7 @@ package com.testobject.appiumrestexample.util;
 import com.google.common.base.Optional;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -13,6 +14,10 @@ import static org.testobject.appium.common.TestObjectCapabilities.*;
 public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public static AndroidDriverBuilder forAndroid() {
+		return new AndroidDriverBuilder();
+	}
+
+	public static AndroidDriverBuilder forIOS() {
 		return new AndroidDriverBuilder();
 	}
 
@@ -41,6 +46,40 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 			}
 
 			return new AndroidDriver(toURL(endpoint), capabilities);
+
+		}
+
+	}
+
+	public static IOSDriverBuilder iosDriverBuilder() {
+		return new IOSDriverBuilder();
+	}
+
+	public static class IOSDriverBuilder extends AppiumDriverBuilder<IOSDriverBuilder, IOSDriver> {
+
+		public IOSDriver build() {
+
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability("deviceName", "iOSTestDevice");
+
+			if (testObjectConfig.isPresent()) {
+
+				capabilities.setCapability(TESTOBJECT_API_KEY, testObjectConfig.get().apiKey);
+				capabilities.setCapability(TESTOBJECT_APP_ID, testObjectConfig.get().appId);
+				capabilities.setCapability(TESTOBJECT_DEVICE, testObjectConfig.get().deviceId);
+
+				if (suiteName.isPresent()) {
+					capabilities.setCapability(TESTOBJECT_SUITE_NAME, suiteName.get());
+				}
+				if (testName.isPresent()) {
+					capabilities.setCapability(TESTOBJECT_TEST_NAME, testName.get());
+				}
+
+			} else {
+				endpoint = "http://127.0.0.1:4723/wd/hub";
+			}
+
+			return new IOSDriver(toURL(endpoint), capabilities);
 
 		}
 
