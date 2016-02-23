@@ -1,14 +1,10 @@
 package com.testobject.appiumrestexample.util;
 
 import com.sun.jersey.api.client.GenericType;
-import org.openqa.selenium.remote.SessionId;
-import org.testobject.appium.common.data.SuiteReport;
-import org.testobject.appium.common.data.TestReport;
-import org.testobject.appium.common.data.TestResult;
-import org.testobject.appium.junit.internal.Test;
 
 import javax.ws.rs.core.MediaType;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * Created by grago on 08/02/16.
