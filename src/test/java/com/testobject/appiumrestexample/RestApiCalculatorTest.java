@@ -2,16 +2,12 @@ package com.testobject.appiumrestexample;
 
 import com.testobject.appiumrestexample.util.Parallelized;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
 
@@ -29,7 +25,6 @@ public class RestApiCalculatorTest {
         this.device = device;
     }
 
-    /* This is the setup that will be run before the test. */
     @Before
     public void setUp() throws Exception {
 
@@ -51,7 +46,7 @@ public class RestApiCalculatorTest {
 
     @Test
     public void firstTest() {
-
+        /* Your test. */
     }
 
 }
