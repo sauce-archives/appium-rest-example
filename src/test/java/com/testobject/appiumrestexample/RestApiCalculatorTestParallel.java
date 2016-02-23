@@ -11,7 +11,7 @@ import java.util.List;
 @RunWith(Parallelized.class)
 public class RestApiCalculatorTestParallel extends RestApiCalculatorTest {
 
-    private static TestObject testObject = new TestObject("https://app.testobject.com:443/api/rest/devices/v1", TESTOBJECT_API_KEY);
+    private static TestObject testObject = new TestObject(TESTOBJECT_REST_ENDPOINT, TESTOBJECT_API_KEY);
 
     @Parameterized.Parameters
     public static List<Object[]> data() {
